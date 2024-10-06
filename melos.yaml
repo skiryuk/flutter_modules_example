@@ -1,0 +1,82 @@
+name: beeline_retail_monorepo
+
+sdkPath: .fvm/flutter_sdk
+
+packages:
+  - packages/**
+  - apps/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    exec: flutter analyze .
+  outdated:
+    exec: flutter pub outdated
+  test:
+    exec: flutter test
+
+  ## Generate derivate files
+  generate:common:
+    run: melos exec --fail-fast --scope="*common*" --flutter -- "flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:common_pro:
+    run: melos exec --fail-fast --scope="*common_pro*" --flutter -- "flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:conf:
+    run: melos exec --fail-fast --scope="*conf*" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:cpu:
+    run: melos exec --fail-fast --scope="*cpu*" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:pro:
+    run: melos exec --fail-fast --scope="*pro*" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:reports:
+    run: melos exec --fail-fast --scope="*reports*" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:incedex:
+    run: melos exec --fail-fast --scope="*incedex*" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+  generate:all:
+    run: melos exec --fail-fast --depends-on="build_runner" --flutter -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
+  ##
+
+  ## Сборка/запуск приложений
+  build:pro:
+    run: melos exec --fail-fast --scope="*pro*" --flutter -- "fvm flutter build"
+  run:pro:
+    run: melos exec --fail-fast --scope="*pro*" --flutter -- "fvm flutter run"
+
+  ## Сборка/релиз Android
+  build:pro:apk:
+    run: melos exec --fail-fast --flutter -- "fvm flutter build apk --no-tree-shake-icons --release"
+    packageFilters:
+      dirExists:
+        - android
+      scope: "*pro*"
+
+  build:pro:appbundle:
+    run: melos exec --fail-fast --flutter -- "fvm flutter build appbundle --no-tree-shake-icons --release"
+    packageFilters:
+      dirExists:
+        - android
+      scope: "*pro*"
+
+  build:pro:apk:autotest:
+    run: melos exec --fail-fast --flutter -- "fvm flutter build apk --target='lib/main_test.dart' --no-tree-shake-icons --release"
+    packageFilters:
+      dirExists:
+        - android
+      scope: "*pro*"
+
+  ## Сборка и заливка iOS в AppStore
+  build:pro:upload:ios:
+    run: melos exec --fail-fast --flutter -- "fvm flutter build ios --release --no-codesign --no-tree-shake-icons && cd ios && bundle exec fastlane beta --env local"
+    packageFilters:
+      dirExists:
+        - ios
+      scope: "*pro*"
+
+  ## Сборка и заливка Android в Google Play
+  build:pro:upload:android:
+    run: melos exec --fail-fast --flutter -- "fvm flutter build appbundle --release --no-tree-shake-icons && cd android && fastlane supply --aab ../build/app/outputs/bundle/release/app-release.aab --track internal --rollout 1"
+    packageFilters:
+      dirExists:
+        - android
+      scope: "*pro*"
