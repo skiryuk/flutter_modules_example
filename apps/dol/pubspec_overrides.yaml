@@ -1,0 +1,14 @@
+# melos_managed_dependency_overrides: ao,common,common_dol,conf,contracts,uikit
+dependency_overrides:
+  ao:
+    path: ../../packages/ao
+  common:
+    path: ../../packages/common
+  common_dol:
+    path: ../../packages/common_dol
+  conf:
+    path: ../../packages/conf
+  contracts:
+    path: ../../packages/contracts
+  uikit:
+    path: ../../packages/uikit
