@@ -7,4 +7,6 @@ class AppService extends IAppService {
   AppService(
     this._appState,
   ) : super(_appState);
+
+  AppState get state => _appState;
 }

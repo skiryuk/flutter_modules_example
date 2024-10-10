@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dol/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:uikit/uikit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,6 +27,7 @@ class _MainPageState extends State<MainPage> {
     return CupertinoPageScaffold(
       backgroundColor: CupertinoColors.white,
       child: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             const NewsWidget(),
@@ -39,6 +41,10 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
               ),
+            ),
+            Container(
+              color: const Color(0xfff0f0f1),
+              height: 32.h,
             )
           ],
         ),
@@ -76,32 +82,22 @@ class MenuWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: UiCard(
-                  child: SizedBox(
-                    height: 128.h,
-                    child: const Center(
-                      child: Text(
-                        'CONTRACTS\nMODULE',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                child: ModuleTile(
+                  title: 'CONTRACTS\nMODULE',
+                  onTap: () {
+                    context.pushRoute(const ContractsModulePageRoute());
+                  },
                 ),
               ),
               SizedBox(
                 width: 16.w,
               ),
               Expanded(
-                child: UiCard(
-                  child: SizedBox(
-                    height: 128.h,
-                    child: const Center(
-                      child: Text(
-                        'AO\nMODULE',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                child: ModuleTile(
+                  title: 'AO\nMODULE',
+                  onTap: () {
+                    context.pushRoute(const AoModulePageRoute());
+                  },
                 ),
               )
             ],
@@ -111,22 +107,45 @@ class MenuWidget extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: UiCard(
-                    child: SizedBox(
-                      height: 128.h,
-                      child: const Center(
-                        child: Text(
-                          'CONF\nMODULE',
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
+                  child: ModuleTile(
+                    title: 'CONF\nMODULE',
+                    onTap: () {
+                      context.pushRoute(const ConfModulePageRoute());
+                    },
                   ),
                 ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class ModuleTile extends StatelessWidget {
+  final String title;
+  final VoidCallback onTap;
+  const ModuleTile({
+    super.key,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: UiCard(
+        child: SizedBox(
+          height: 128.h,
+          child: Center(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
       ),
     );
   }

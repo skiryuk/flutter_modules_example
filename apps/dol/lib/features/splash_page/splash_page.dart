@@ -44,7 +44,7 @@ class _SplashPageState
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
+    return const CupertinoPageScaffold(
       child: SafeArea(
         child: Column(
           children: [

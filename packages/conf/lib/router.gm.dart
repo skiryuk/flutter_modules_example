@@ -12,6 +12,12 @@ part of 'router.dart';
 abstract class _$ConfRouter extends AutoRouterModule {
   @override
   final Map<String, PageFactory> pagesMap = {
+    ConfDetailPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ConfDetailPage(),
+      );
+    },
     ConfMainPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +31,20 @@ abstract class _$ConfRouter extends AutoRouterModule {
       );
     },
   };
+}
+
+/// generated route for
+/// [ConfDetailPage]
+class ConfDetailPageRoute extends PageRouteInfo<void> {
+  const ConfDetailPageRoute({List<PageRouteInfo>? children})
+      : super(
+          ConfDetailPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ConfDetailPageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

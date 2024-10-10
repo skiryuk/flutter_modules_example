@@ -1,3 +1,4 @@
+import 'package:ao/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,10 +22,20 @@ class AoMainPage extends StatefulWidget {
 class _AoMainPageState extends State<AoMainPage> {
   @override
   Widget build(BuildContext context) {
-    return const CupertinoPageScaffold(
-      backgroundColor: Color(0xfff0f0f1),
+    return CupertinoPageScaffold(
+      backgroundColor: const Color(0xfff0f0f1),
       child: SafeArea(
-        child: Text('This is AO Page'),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('This is AO Page'),
+            CupertinoButton(
+                child: const Text('to Details'),
+                onPressed: () {
+                  context.router.push(const AoDetailPageRoute());
+                })
+          ],
+        ),
       ),
     );
   }

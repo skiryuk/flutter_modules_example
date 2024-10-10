@@ -3,6 +3,9 @@ import 'package:common/core/framework/view_binding.dart';
 import 'package:conf/router.dart';
 import 'package:ao/router.dart';
 import 'package:contracts/router.dart';
+import 'package:dol/features/ao_module_page/ao_module_page.dart';
+import 'package:dol/features/conf_module_page/conf_module_page.dart';
+import 'package:dol/features/contracts_module_page/contracts_module_page.dart';
 import 'package:dol/features/main_page/main_page.dart';
 import 'package:dol/features/splash_page/splash_page.dart';
 import 'package:flutter/widgets.dart';
@@ -34,9 +37,21 @@ class AppRouter extends _$AppRouter {
               page: MainPageRoute.page,
               initial: true,
             ),
-            ...aoRoutes,
-            ...confRoutes,
-            ...contractsRoutes,
+            CupertinoRoute(
+              path: AoModulePage.routeName,
+              page: AoModulePageRoute.page,
+              children: aoRoutes,
+            ),
+            CupertinoRoute(
+              path: ContractsModulePage.routeName,
+              page: ContractsModulePageRoute.page,
+              children: contractsRoutes,
+            ),
+            CupertinoRoute(
+              path: ConfModulePage.routeName,
+              page: ConfModulePageRoute.page,
+              children: confRoutes,
+            ),
           ],
         ),
       ];

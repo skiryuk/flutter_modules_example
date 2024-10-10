@@ -41,7 +41,7 @@ void runner({AppConfig? appConfig}) async {
 
 // Инициализация запуска основного приложения
 Future<void> init() async {
-  // Всегда использовать светлую тему (темная пока не поддерживается)
+  // Всегда использовать светлую тему
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
   runApp(const AppWidget());

@@ -15,6 +15,24 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AoModulePageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AoModulePage(),
+      );
+    },
+    ConfModulePageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ConfModulePage(),
+      );
+    },
+    ContractsModulePageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ContractsModulePage(),
+      );
+    },
     MainPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -42,6 +60,48 @@ abstract class _$AppRouter extends RootStackRouter {
     ...ConfRouter().pagesMap,
     ...ContractsRouter().pagesMap,
   };
+}
+
+/// generated route for
+/// [AoModulePage]
+class AoModulePageRoute extends PageRouteInfo<void> {
+  const AoModulePageRoute({List<PageRouteInfo>? children})
+      : super(
+          AoModulePageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AoModulePageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ConfModulePage]
+class ConfModulePageRoute extends PageRouteInfo<void> {
+  const ConfModulePageRoute({List<PageRouteInfo>? children})
+      : super(
+          ConfModulePageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ConfModulePageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ContractsModulePage]
+class ContractsModulePageRoute extends PageRouteInfo<void> {
+  const ContractsModulePageRoute({List<PageRouteInfo>? children})
+      : super(
+          ContractsModulePageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ContractsModulePageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

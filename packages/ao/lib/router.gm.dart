@@ -12,6 +12,12 @@ part of 'router.dart';
 abstract class _$AoRouter extends AutoRouterModule {
   @override
   final Map<String, PageFactory> pagesMap = {
+    AoDetailPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AoDetailPage(),
+      );
+    },
     AoMainPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +31,20 @@ abstract class _$AoRouter extends AutoRouterModule {
       );
     },
   };
+}
+
+/// generated route for
+/// [AoDetailPage]
+class AoDetailPageRoute extends PageRouteInfo<void> {
+  const AoDetailPageRoute({List<PageRouteInfo>? children})
+      : super(
+          AoDetailPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AoDetailPageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
