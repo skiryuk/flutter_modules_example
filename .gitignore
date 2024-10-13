@@ -474,7 +474,7 @@ hs_err_pid*
 # End of https://www.toptal.com/developers/gitignore/api/intellij,webstorm,gradle,macos,android,androidstudio,xcode
 
 
-.fvm/**
+.fvm/flutter_sdk/**
 .dart_tool/**
 
 .packages
