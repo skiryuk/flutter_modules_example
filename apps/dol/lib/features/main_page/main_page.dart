@@ -1,3 +1,4 @@
+import 'package:ao/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dol/router.dart';
 import 'package:flutter/cupertino.dart';
@@ -96,7 +97,17 @@ class MenuWidget extends StatelessWidget {
                 child: ModuleTile(
                   title: 'AO\nMODULE',
                   onTap: () {
-                    context.pushRoute(const AoModulePageRoute());
+                    context.pushRoute(
+                      AoModulePageRoute(
+                        children: [
+                          AoMainPageRouteRoot(
+                            children: [
+                              AoMainPageRoute(id: '7777777'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
                   },
                 ),
               )
